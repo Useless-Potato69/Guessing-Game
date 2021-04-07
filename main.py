@@ -40,16 +40,33 @@ while bool_playagain is True:
   n = random.randint(1, 10)
   print(n)
 
-  guess = int(input("Guess Your number: "))
-  list_guess.append(guess)
 
-  int_lives = int_lives - 1
-  print(int_lives)
+
   while int_lives > 0:
+    guess = int(input("Guess Your number: "))
+    list_guess.append(guess)
 
     if guess == n:
 
       print("You got it right!")
       bool_playagain = False
       break
-    "elif guess != n"
+
+    elif guess != n:
+      clear()
+      int_lives = int_lives - 1
+      print(int_lives)
+
+      print("********Logans Guessing Game********")
+      print("Lives: {}".format(int_lives))
+      print("")
+      print("Incorrect!")
+
+
+  clear()
+  print("********Logans Guessing Game********")
+  print("Lives: {}".format(int_lives))
+  print("")
+  print("Your out of lives!")
+  print("The number was: {}".format(n))
+  
