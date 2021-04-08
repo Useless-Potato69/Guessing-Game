@@ -61,12 +61,11 @@ while bool_playagain is True:
       print("Lives: {}".format(int_lives))
       print("")
 
-      print("You got it right!")
+      print("You got it right! Good Job {}.".format(str_name))
       print("")
       print("The number was: {}".format(n))
       print("You Guessed: {}".format(list_guess))
       bool_playagain = False
-      input("DEBUG Press Enter to continue...")
       break
 
     #If the users guesses incorrectly, the loop continues
@@ -90,14 +89,33 @@ while bool_playagain is True:
     print("")
     print("The number was: {}".format(n))
     print("You Guessed: {}".format(list_guess))
-    input("DEBUG Press Enter to continue...")
 
+  #Asks user if they wish to play again
+  print("")
+  bool_user_playagain = str(input("Do you wish to play again? Y/N "))
+  bool_user_playagain = bool_user_playagain.strip()
+  bool_user_playagain = bool_user_playagain.casefold()
 
-'''needs 
-clear list if the users replays
-ask if the users wants to play again
-show the user their guesses
-play again option
-verify that inputs are the correct format and account for incorrect formats
-COMMENTING
+  if bool_user_playagain == "y":
+    int_lives = 3
+    list_guess = [ ]
+    bool_playagain = True
+
+  elif bool_user_playagain == "n":
+    bool_playagain = False
+    break
+  
+clear()
+print("********Logans Guessing Game********")
+print("Thank you for playing Logan's guessing game.")
+print("Have Great Day!")
+
 '''
+  needs 
+  clear list if the users replays
+  ask if the users wants to play again
+  show the user their guesses
+  play again option
+  verify that inputs are the correct format and account for incorrect formats
+  COMMENTING
+  '''
