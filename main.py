@@ -6,6 +6,7 @@ Guess the random number that has been selected'''
 #Importing the required libraries
 import random
 import os
+import time
 
 #Defining variables
 list_guess = [ ]
@@ -23,11 +24,24 @@ clear()
 print("********Logans Guessing Game********")
 print("")
 print("Hello {}".format(str_name))
+print("")
+
+int_level = input("What difficulty level do you wish to play on? 1 - Easy | 2 - Normal | 3 - Hard ")
+clear()
+
+print("********Logans Guessing Game********")
+print("")
+print("Hello {}".format(str_name))
+print("")
+
+if int_level == "1":
+  print("Easy mode selected.")
+  int_numberrange = 10
 
 #Explains game
 
 print("Welcome to Logan's guessing game.")
-print("Logan is going to think of a number between 1 and 10, your job is to guess that number.")
+print("Logan is going to think of a number between 1 and {}, your job is to guess that number.".format(int_numberrange))
 print("You have 3 lives. Goodluck.")
 print("")
 input("Press Enter to start...")
@@ -42,7 +56,7 @@ while bool_playagain is True:
   print("Current Guesses: {}".format(list_guess))
 
   #Random number is generated
-  n = random.randint(1, 10)
+  n = random.randint(1, int_numberrange)
 
 
   #While the player has more than 0 lives, run the game
@@ -68,15 +82,24 @@ while bool_playagain is True:
       break
 
     #If the users guesses incorrectly, the loop continues
-    elif guess != n:
-      clear()
-      int_lives = int_lives - 1
+    while guess != n:
+      if guess < n:
+        print("Your Guess is too low")
+        time.sleep(60)
 
-      print("********Logans Guessing Game********")
-      print("Lives: {}".format(int_lives))
-      print("Current Guesses: {}".format(list_guess))
-      print("")
-      print("Incorrect!")
+      else:
+        clear()
+        int_lives = int_lives - 1
+
+        print("********Logans Guessing Game********")
+        print("Lives: {}".format(int_lives))
+        print("Current Guesses: {}".format(list_guess))
+        print("")
+        print("Incorrect!")
+
+
+
+
 
   #End game text if the user runs out of lives
   if int_lives == 0:
