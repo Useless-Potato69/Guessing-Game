@@ -1,6 +1,6 @@
 '''Guessing Game
   Logan Woods
-Version 1.0.0.2
+Version 1.0.0.3
 Guess the random number that has been selected'''
 
 #Importing the required libraries
@@ -95,48 +95,39 @@ while bool_playagain is True:
 
     #If the users guesses incorrectly, the loop continues
     while guess != n:
-      clear()
-      title()
-      print("Current Guesses: {}".format(list_guess))
+
 
       print("")
 
-      if int_lives == 0 :
-        break
-
+      #Warn the user if their guess was too low
       if guess < n:
         int_lives = int_lives - 1
+        print("Incorrect!")
+        print("")
         print("Your Guess is too low.")
         time.sleep(1)
 
-        clear()
-        title()
-        print("Current Guesses: {}".format(list_guess))
-        guess = int(input("Guess Your number: "))
-        list_guess.append(guess)
-
+      #Warn the user if their guess was too high
       elif guess > n:
         int_lives = int_lives - 1
+        print("Incorrect!")
+        print("")
         print("Your Guess is too high.")
         time.sleep(1)
 
+      #If the user runs out of lives, the loop will end
+      if int_lives == 0:
+        break
+
+      #Promts the user to enter another number
+      else:
         clear()
         title()
         print("Current Guesses: {}".format(list_guess))
+        print("")
         guess = int(input("Guess Your number: "))
         list_guess.append(guess)
 
-
-      else:
-        clear()
-        int_lives = int_lives - 1
-
-        print("********Logans Guessing Game********")
-        print("Lives: {}".format(int_lives))
-        print("Current Guesses: {}".format(list_guess))
-        print("")
-        print("Incorrect!")
-        break
 
 
 
