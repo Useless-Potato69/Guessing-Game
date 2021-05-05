@@ -1,6 +1,6 @@
 '''Guessing Game
   Logan Woods
-Version 1.0.0.4
+Version 1.0.0.5
 Guess the random number that has been selected'''
 
 #Importing the required libraries
@@ -79,7 +79,6 @@ while bool_playagain is True:
 
     #Player takes first guess, guess is added to list
     guess = int(input("Guess Your number: "))
-    list_guess.append(guess)
 
     #While the player has more than 0 lives, run the game
     while int_lives > 0:
@@ -90,6 +89,7 @@ while bool_playagain is True:
         if guess == n:
 
             clear()
+            list_guess.append(guess)
             title()
 
             print("You got it right! Good Job {}.".format(str_name))
@@ -104,16 +104,30 @@ while bool_playagain is True:
 
             print("")
 
-            #Warn the user if their guess was too low
-            if guess < n:
+            #If the user's input is lower than the minimum
+            if guess < 1:
+              print("Your answer needs to be more than 1!")
+              time.sleep(1)
+
+            #If the user's input is higher than the maximum
+            elif guess > int_numberrange:
+              print("Your answer cannot be more than {}".format(int_numberrange))
+              time.sleep(1)
+
+            else:
+
+              #Warn the user if their guess was too low
+              if guess < n:
+                list_guess.append(guess)
                 int_lives = int_lives - 1
                 print("Incorrect!")
                 print("")
                 print("Your Guess is too low.")
                 time.sleep(1)
 
-            #Warn the user if their guess was too high
-            elif guess > n:
+              #Warn the user if their guess was too high
+              elif guess > n:
+                list_guess.append(guess)
                 int_lives = int_lives - 1
                 print("Incorrect!")
                 print("")
@@ -131,7 +145,6 @@ while bool_playagain is True:
                 print("Current Guesses: {}".format(list_guess))
                 print("")
                 guess = int(input("Guess Your number: "))
-                list_guess.append(guess)
 
     #End game text if the user runs out of lives
     if int_lives == 0:
@@ -155,7 +168,7 @@ while bool_playagain is True:
 
         #See if the user wishes to change difficultys
         bool_user_changelevel = str(
-            input("Do you wish to change the difficulty? Y/N "))
+        input("Do you wish to change the difficulty? Y/N "))
         bool_user_changelevel = bool_user_changelevel.strip()
         bool_user_changelevel = bool_user_changelevel.casefold()
 
