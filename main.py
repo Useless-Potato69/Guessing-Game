@@ -1,7 +1,10 @@
 '''Guessing Game
   Logan Woods
-Version 2.0.0.0
-Guess the random number that has been selected'''
+Version 2.0.0.1
+Guess the random number that has been selected
+
+THIS PROGRAM MUST BE RUN IN A LINUX ENVIROMENT
+Python IDLE on Windows 10 does not support the required libraries'''
 
 #Importing the required libraries
 import random
@@ -102,7 +105,6 @@ while bool_playagain is True:
     n = random.randint(1, int_numberrange)
 
     #Player takes first guess, guess is added to list
-    # guess = int(input("Guess Your number: "))
 
     #While the player has more than 0 lives, run the game
     while int_lives > 0:
@@ -120,7 +122,7 @@ while bool_playagain is True:
                 print("Current Guesses: {}".format(list_guess))
 
         #If the user guesses right, the loop ends
-        if guess == n:
+        if guess is n:
 
             clear()
             list_guess.append(guess)
@@ -205,69 +207,92 @@ while bool_playagain is True:
         print("The number was: {}".format(n))
         print("You Guessed: {}".format(list_guess))
 
-    #Asks user if they wish to play again
-    print("")
-    bool_user_playagain = str(input("Do you wish to play again? Y/N "))
-    bool_user_playagain = bool_user_playagain.strip()
-    bool_user_playagain = bool_user_playagain.casefold()
+    bool_no_ans = True
+    while bool_no_ans is True:
+        #Asks user if they wish to play again
+        print("")
+        bool_user_playagain = str(input("Do you wish to play again? Y/N "))
+        bool_user_playagain = bool_user_playagain.strip()
+        bool_user_playagain = bool_user_playagain.casefold()
 
-    #Enables the game to run again
-    if bool_user_playagain == "y":
+        #Enables the game to run again
+        if bool_user_playagain == "y":
+            bool_no_ans = False
 
-        #See if the user wishes to change difficultys
-        bool_user_changelevel = str(
-            input("Do you wish to change the difficulty? Y/N "))
-        bool_user_changelevel = bool_user_changelevel.strip()
-        bool_user_changelevel = bool_user_changelevel.casefold()
+            bool_no_ans2 = True
+            while bool_no_ans2 is True:
+                #See if the user wishes to change difficultys
+                bool_user_changelevel = str(
+                    input("Do you wish to change the difficulty? Y/N "))
+                bool_user_changelevel = bool_user_changelevel.strip()
+                bool_user_changelevel = bool_user_changelevel.casefold()
 
-        if bool_user_changelevel == "y":
-            # User selects difficulty
-            while True:
-                try:
+                if bool_user_changelevel == "y":
+                    bool_no_ans2 = False
+                    # User selects difficulty
+                    while True:
+                        try:
 
-                    print(
-                        "What difficulty of you wish to play on? Easy 1-10 | Normal 1-15 | Hard 1-20"
-                    )
+                            print(
+                                "What difficulty of you wish to play on? Easy 1-10 | Normal 1-15 | Hard 1-20"
+                            )
+                            print("")
+                            int_level = input(
+                                "Please select your difficulty. 1 - Easy | 2 - Normal | 3 - Hard "
+                            )
+                            if int_level == "1":
+                                print("Easy mode selected.")
+                                int_numberrange = 10
+                                bool_no_lvl_selected = False
+                                break
+
+                            elif int_level == "2":
+                                print("Normal mode selected.")
+                                int_numberrange = 15
+                                bool_no_lvl_selected = False
+                                break
+
+                            elif int_level == "3":
+                                print("Hard mode selected.")
+                                int_numberrange = 20
+                                bool_no_lvl_selected = False
+                                break
+
+                            else:
+                                print("")
+                                print("You must select 1, 2 or 3.")
+                                time.sleep(1)
+                                clear()
+                                print("")
+
+                        except:
+                            print("You must select 1, 2 or 3.")
+                    int_lives = 3
+                    list_guess = []
+                    bool_playagain = True
+
+                #If the user doesnt wish to change difficulty
+                elif bool_user_changelevel == "n":
+                    int_lives = 3
+                    list_guess = []
+                    bool_playagain = True
+                    bool_no_ans2 = False
+
+                else:
                     print("")
-                    int_level = input(
-                        "Please select your difficulty. 1 - Easy | 2 - Normal | 3 - Hard "
-                    )
-                    if int_level == "1":
-                        print("Easy mode selected.")
-                        int_numberrange = 10
-                        bool_no_lvl_selected = False
-                        break
+                    print("You must select Y or N.")
+                    print("")
 
-                    elif int_level == "2":
-                        print("Normal mode selected.")
-                        int_numberrange = 15
-                        bool_no_lvl_selected = False
-                        break
+        #Stops the game from looping
+        elif bool_user_playagain == "n":
+            bool_playagain = False
+            bool_no_ans = False
+            break
 
-                    elif int_level == "3":
-                        print("Hard mode selected.")
-                        int_numberrange = 20
-                        bool_no_lvl_selected = False
-                        break
-
-                    else:
-                        print("")
-                        print("You must select 1, 2 or 3.")
-                        time.sleep(1)
-                        clear()
-                        print("")
-
-                except:
-                    print("You must select 1, 2 or 3.")
-
-        int_lives = 3
-        list_guess = []
-        bool_playagain = True
-
-    #Stops the game from looping
-    elif bool_user_playagain == "n":
-        bool_playagain = False
-        break
+        else:
+            print("")
+            print("You must select Y or N.")
+            print("")
 
 #Displays the end screen
 clear()
