@@ -1,25 +1,29 @@
 '''Guessing Game
   Logan Woods
-Version 2.0.0.1
+Version 2.0.0.2
 Guess the random number that has been selected
 
 THIS PROGRAM MUST BE RUN IN A LINUX ENVIROMENT
 Python IDLE on Windows 10 does not support the required libraries'''
 
-#Importing the required libraries
+##################################################################
+# SETUP
+##################################################################
+
+# Importing the required libraries
 import random
 import os
 import time
 import getch
 
-#Defining variables
+# Defining variables
 list_guess = []
 bool_playagain = True
 int_lives = 3
 bool_no_lvl_selected = True
 
 
-#Defining functions
+# Defining functions
 def clear():
     os.system('clear')
 
@@ -28,12 +32,15 @@ def title():
     print("********Logans Guessing Game********")
     print("Lives: {}".format(int_lives))
 
+##################################################################
+# INTRODUCTION
+##################################################################
 
-#Asks users for their name
+# Asks users for their name
 str_name = str(input("Welcome, What is your name? "))
 clear()
 
-#Welcomes user
+# Welcomes user
 print("********Logans Guessing Game********")
 print("")
 print("Hello {}".format(str_name))
@@ -76,7 +83,7 @@ while bool_no_lvl_selected is True:
     except:
         print("You must select 1, 2 or 3.")
 
-#Explains game
+# Explains game
 clear()
 print("********Logans Guessing Game********")
 print("")
@@ -92,21 +99,22 @@ time.sleep(2)
 print("Press any key to continue...")
 char = getch.getch()
 
-#Game begins
+##################################################################
+# GAME
+##################################################################
+
+# Game begins
 while bool_playagain is True:
     clear()
 
-    #Header is printed and player lives and guesses are displayed
-    print("********Logans Guessing Game********")
-    print("Lives: {}".format(int_lives))
+    # Header is printed and player lives and guesses are displayed
+    title()
     print("Current Guesses: {}".format(list_guess))
 
-    #Random number is generated
+    # Random number is generated
     n = random.randint(1, int_numberrange)
 
-    #Player takes first guess, guess is added to list
-
-    #While the player has more than 0 lives, run the game
+    # While the player has more than 0 lives, loop the game
     while int_lives > 0:
 
         while True:
@@ -121,61 +129,47 @@ while bool_playagain is True:
                 title()
                 print("Current Guesses: {}".format(list_guess))
 
-        #If the user guesses right, the loop ends
-        if guess is n:
-
-            clear()
-            list_guess.append(guess)
-            title()
-
-            print("You got it right! Good Job {}.".format(str_name))
-            print("")
-            print("The number was: {}".format(n))
-            print("You Guessed: {}".format(list_guess))
-            bool_playagain = False
-            break
-
-        #If the users guesses incorrectly, the loop continues
+        # If the users guesses incorrectly, the loop continues
         while guess != n:
 
             print("")
 
-            #If the user's input is lower than the minimum
+            # If the user's input is lower than the minimum
             if guess < 1:
                 print("Your answer needs to be more than 1!")
-                time.sleep(1)
+                time.sleep(2)
 
-            #If the user's input is higher than the maximum
+            # If the user's input is higher than the maximum
             elif guess > int_numberrange:
                 print("Your answer cannot be more than {}".format(
                     int_numberrange))
-                time.sleep(1)
+                time.sleep(2)
 
             else:
 
-                #Warn the user if their guess was too low
+                # Warn the user if their guess was too low
                 if guess < n:
                     list_guess.append(guess)
                     int_lives = int_lives - 1
                     print("Incorrect!")
                     print("")
                     print("Your Guess is too low.")
-                    time.sleep(1)
+                    time.sleep(2)
 
-                #Warn the user if their guess was too high
+                # Warn the user if their guess was too high
                 elif guess > n:
                     list_guess.append(guess)
                     int_lives = int_lives - 1
                     print("Incorrect!")
                     print("")
                     print("Your Guess is too high.")
-                    time.sleep(1)
+                    time.sleep(2)
 
-            #If the user runs out of lives, the loop will end
+            # If the user runs out of lives, the loop will end
             if int_lives == 0:
                 break
 
-            #Promts the user to enter another number
+            # Promts the user to enter another number
             else:
                 clear()
                 title()
@@ -188,6 +182,7 @@ while bool_playagain is True:
 
                         guess = int(input("Guess Your number: "))
                         break
+                        break
                     except:
                         print("")
                         print("You must input a number.")
@@ -196,11 +191,28 @@ while bool_playagain is True:
                         title()
                         print("Current Guesses: {}".format(list_guess))
 
-    #End game text if the user runs out of lives
+        # If the user guesses right, the loop ends
+        if guess == n:
+
+            clear()
+            list_guess.append(guess)
+            title()
+
+            print("You got it right! Good Job {}.".format(str_name))
+            print("")
+            print("The number was: {}".format(n))
+            print("You Guessed: {}".format(list_guess))
+            bool_playagain = False
+            break
+
+##################################################################
+# END OF GAME
+##################################################################
+
+# End game text if the user runs out of lives
     if int_lives == 0:
         clear()
-        print("********Logans Guessing Game********")
-        print("Lives: {}".format(int_lives))
+        title()
         print("")
         print("You lose, Your out of lives!")
         print("")
@@ -209,19 +221,21 @@ while bool_playagain is True:
 
     bool_no_ans = True
     while bool_no_ans is True:
-        #Asks user if they wish to play again
+
+        # Asks user if they wish to play again
         print("")
         bool_user_playagain = str(input("Do you wish to play again? Y/N "))
         bool_user_playagain = bool_user_playagain.strip()
         bool_user_playagain = bool_user_playagain.casefold()
 
-        #Enables the game to run again
+        # Enables the game to run again
         if bool_user_playagain == "y":
             bool_no_ans = False
 
             bool_no_ans2 = True
             while bool_no_ans2 is True:
-                #See if the user wishes to change difficultys
+
+                # See if the user wishes to change difficultys
                 bool_user_changelevel = str(
                     input("Do you wish to change the difficulty? Y/N "))
                 bool_user_changelevel = bool_user_changelevel.strip()
@@ -229,6 +243,7 @@ while bool_playagain is True:
 
                 if bool_user_changelevel == "y":
                     bool_no_ans2 = False
+
                     # User selects difficulty
                     while True:
                         try:
@@ -271,7 +286,7 @@ while bool_playagain is True:
                     list_guess = []
                     bool_playagain = True
 
-                #If the user doesnt wish to change difficulty
+                # If the user doesnt wish to change difficulty
                 elif bool_user_changelevel == "n":
                     int_lives = 3
                     list_guess = []
@@ -283,7 +298,7 @@ while bool_playagain is True:
                     print("You must select Y or N.")
                     print("")
 
-        #Stops the game from looping
+        # Stops the game from looping
         elif bool_user_playagain == "n":
             bool_playagain = False
             bool_no_ans = False
@@ -294,7 +309,11 @@ while bool_playagain is True:
             print("You must select Y or N.")
             print("")
 
-#Displays the end screen
+##################################################################
+# END SCREEN
+##################################################################
+
+# Displays the end screen
 clear()
 print("********Logans Guessing Game********")
 print("Thank you for playing Logan's guessing game.")
