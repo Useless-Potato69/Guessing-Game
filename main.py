@@ -1,6 +1,6 @@
 '''Guessing Game
   Logan Woods
-Version 2.0.0.2
+Version 2.0.0.3
 Guess the random number that has been selected
 
 THIS PROGRAM MUST BE RUN IN A LINUX ENVIROMENT
@@ -209,7 +209,7 @@ while bool_playagain is True:
 # END OF GAME
 ##################################################################
 
-# End game text if the user runs out of lives
+    # End game text if the user runs out of lives
     if int_lives == 0:
         clear()
         title()
@@ -293,6 +293,7 @@ while bool_playagain is True:
                     bool_playagain = True
                     bool_no_ans2 = False
 
+                # If the user doesn't enter Y or N
                 else:
                     print("")
                     print("You must select Y or N.")
@@ -304,6 +305,7 @@ while bool_playagain is True:
             bool_no_ans = False
             break
 
+        # If the user doesn't enter Y or N
         else:
             print("")
             print("You must select Y or N.")
