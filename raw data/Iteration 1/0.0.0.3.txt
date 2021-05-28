@@ -1,0 +1,5 @@
+features:
+welcome screen
+player lives
+view previous guesses
+game ends when out of lives 
