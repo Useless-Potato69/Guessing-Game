@@ -1,0 +1,12 @@
+features:
+welcome screen
+player lives
+view previous guesses
+game ends when out of lives 
+end screen
+replay system
+difficulty system
+hints to the number
+change difficulty when replaying game
+guess must be in range else its not accepted
+if the user enters an unexpected input, it will not be accepted and the user will prompted again

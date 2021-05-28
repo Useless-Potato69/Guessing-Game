@@ -1,6 +1,6 @@
 '''Guessing Game
   Logan Woods
-Version 1.0.0.1
+Version 0.0.0.1
 Guess the random number that has been selected'''
 
 #Importing the required libraries
@@ -16,7 +16,7 @@ int_lives = 3
 def clear(): os.system('clear') 
 
 #Asks users for their name
-str_name = str(input("Welcome, What is your name? "))
+str_name = input("Welcome, What is your name? ")
 clear()
 
 #Welcomes user
@@ -43,6 +43,7 @@ while bool_playagain is True:
 
   #Random number is generated
   n = random.randint(1, 10)
+  print(n)
 
 
   #While the player has more than 0 lives, run the game
@@ -95,18 +96,15 @@ while bool_playagain is True:
   bool_user_playagain = bool_user_playagain.strip()
   bool_user_playagain = bool_user_playagain.casefold()
 
-  #Enables the game to run again
   if bool_user_playagain == "y":
     int_lives = 3
     list_guess = [ ]
     bool_playagain = True
 
-  #Stops the game from looping
   elif bool_user_playagain == "n":
     bool_playagain = False
     break
-
-#Displays the end screen  
+  
 clear()
 print("********Logans Guessing Game********")
 print("Thank you for playing Logan's guessing game.")
