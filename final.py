@@ -96,8 +96,8 @@ print(
 print("You have 3 lives. Goodluck.")
 print("")
 time.sleep(2)
-print("Press any key to continue...")
-char = getch.getch()
+input("Press Enter to start...")
+
 
 ##################################################################
 # GAME
